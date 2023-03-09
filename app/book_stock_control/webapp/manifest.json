@@ -1,0 +1,171 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+      "id": "fiorielements.bookstockcontrol",
+      "type": "application",
+      "i18n": "i18n/i18n.properties",
+      "applicationVersion": {
+          "version": "0.0.1"
+      },
+      "title": "{{appTitle}}",
+      "description": "{{appDescription}}",
+      "resources": "resources.json",
+      "sourceTemplate": {
+          "id": "@sap/generator-fiori:lrop",
+          "version": "1.9.1",
+          "toolsId": "e14ae06b-3fee-4bd7-8b77-a559b7daf219"
+      },
+      "dataSources": {
+          "mainService": {
+              "uri": "/catalog/",
+              "type": "OData",
+              "settings": {
+                  "annotations": [],
+                  "localUri": "localService/metadata.xml",
+                  "odataVersion": "4.0"
+              }
+          }
+      }
+  },
+  "sap.ui": {
+      "technology": "UI5",
+      "icons": {
+          "icon": "",
+          "favIcon": "",
+          "phone": "",
+          "phone@2": "",
+          "tablet": "",
+          "tablet@2": ""
+      },
+      "deviceTypes": {
+          "desktop": true,
+          "tablet": true,
+          "phone": true
+      }
+  },
+  "sap.ui5": {
+      "flexEnabled": true,
+      "dependencies": {
+          "minUI5Version": "1.111.1",
+          "libs": {
+              "sap.m": {},
+              "sap.ui.core": {},
+              "sap.ushell": {},
+              "sap.fe.templates": {}
+          }
+      },
+      "contentDensities": {
+          "compact": true,
+          "cozy": true
+      },
+      "models": {
+          "i18n": {
+              "type": "sap.ui.model.resource.ResourceModel",
+              "settings": {
+                  "bundleName": "fiorielements.bookstockcontrol.i18n.i18n"
+              }
+          },
+          "": {
+              "dataSource": "mainService",
+              "preload": true,
+              "settings": {
+                  "synchronizationMode": "None",
+                  "operationMode": "Server",
+                  "autoExpandSelect": true,
+                  "earlyRequests": true
+              }
+          },
+          "@i18n": {
+              "type": "sap.ui.model.resource.ResourceModel",
+              "uri": "i18n/i18n.properties"
+          }
+      },
+      "resources": {
+          "css": []
+      },
+      "routing": {
+          "routes": [
+              {
+                  "pattern": ":?query:",
+                  "name": "BooksList",
+                  "target": "BooksList"
+              },
+              {
+                  "pattern": "Books({key}):?query:",
+                  "name": "BooksObjectPage",
+                  "target": "BooksObjectPage"
+              }
+          ],
+          "targets": {
+              "BooksList": {
+                  "type": "Component",
+                  "id": "BooksList",
+                  "name": "sap.fe.templates.ListReport",
+                  "options": {
+                      "settings": {
+                          "entitySet": "Books",
+                          "variantManagement": "Page",
+                          "navigation": {
+                              "Books": {
+                                  "detail": {
+                                      "route": "BooksObjectPage"
+                                  }
+                              }
+                          },
+                          "initialLoad": "Enabled",
+                          "controlConfiguration": {
+                              "@com.sap.vocabularies.UI.v1.LineItem": {
+                                  "tableSettings": {
+                                      "type": "GridTable"
+                                  },
+                                  "columns": {
+                                      "DataField::title": {
+                                          "width": "auto",
+                                          "horizontalAlign": "Right"
+                                      },
+                                      "DataField::stock": {
+                                          "width": "auto",
+                                          "horizontalAlign": "Left"
+                                      }
+                                  },
+                                  "actions": {
+                                      "customAction": {
+                                          "id": "idUpladCSV",
+                                          "text": "Upload CSV",
+                                          "press": ".extension.fiorielements.bookstockcontrol.ext.controller.ListReportExt.onUploadCSV",
+                                          "requiresSelection": false
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "BooksObjectPage": {
+                  "type": "Component",
+                  "id": "BooksObjectPage",
+                  "name": "sap.fe.templates.ObjectPage",
+                  "options": {
+                      "settings": {
+                          "editableHeaderContent": false,
+                          "entitySet": "Books"
+                      }
+                  }
+              }
+          }
+      },
+      "extends": {
+          "extensions": {
+              "sap.ui.controllerExtensions": {
+                  "sap.fe.templates.ListReport.ListReportController": {
+                      "controllerName": "fiorielements.bookstockcontrol.ext.controller.ListReportExt"
+                  }
+              }
+          }
+      }
+  },
+  "sap.fiori": {
+      "registrationIds": [],
+      "archeType": "transactional"
+  }
+}

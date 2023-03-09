@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:smartTable="sap.ui.comp.smarttable">
+    <Dialog title="{i18n>titleDialogCSV}" titleAlignment="Center">
+        <endButton>
+            <Button text="{i18n>btnClose}" type="Negative" press=".onCloseDialog" />
+        </endButton>
+        <beginButton>
+            <Button type="Success" icon="sap-icon://upload" text="{i18n>btnUpload}" press=".onUploadData" />
+        </beginButton>
+        <VBox justifyContent="Center" alignContent="Center" alignItems="Center">
+            <HBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginTop">
+                <u:FileUploader icon="sap-icon://browse-folder" change="handleFiles" buttonText="{i18n>btnBrowse}" fileType="CSV" placeholder="{i18n>msgNonFileSelect}" />
+            </HBox>
+            <HBox alignContent="Center" alignItems="Center" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+                <Button type="Neutral" icon="sap-icon://download" text="{i18n>btnDowloadTmpl}" press=".onDownloadTemplate" />
+            </HBox>
+            <HBox>
+                <MessageStrip id="messageStripId" visible="false" text="{i18n>msgStrip}" type="Success" showIcon="true" class="sapUiSmallMarginBottom" />
+            </HBox>
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>
