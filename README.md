@@ -439,11 +439,9 @@ sap.ui.define(
 ```
 ## Testing the print pdf feature 👨‍💻
 
+https://user-images.githubusercontent.com/55688528/224032276-129c275c-3237-423b-a971-816f35bc2592.mp4
 
-Uploading UploadCSV.mp4…
-
-
-##Acknowledgement 📚
+## Acknowledgement 📚
 - **CAP CDS**
 - **Javascript / UI5**
 - **Fiori Elements**
